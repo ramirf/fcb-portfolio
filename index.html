@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- favicon -->
+    <link rel="icon" type="image/png" href="./favicon-96x96.png" sizes="96x96" />
+	<link rel="icon" type="image/svg+xml" href="./favicon.svg" />
+	<link rel="shortcut icon" href="./favicon.ico" />
+	<link rel="apple-touch-icon" sizes="180x180" href="./apple-touch-icon.png" />
+	<link rel="manifest" href="./site.webmanifest" />
+
+
+
+    <title>Vhagar - The Ancient Fury</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+      /* CSS Reset & Variables */
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      :root {
+        --bg-main: #0c0e12;
+        --bg-surface: #14171f;
+        --bg-card: #181d27;
+        --border-ancient: #2c3547;
+        --border-accent: #8b7348;
+        --gold-primary: #c9a96e;
+        --gold-hover: #dfc28d;
+        --text-main: #e2e4e9;
+        --text-muted: #9ba3b4;
+        --btn-bg: #1c2230;
+        --btn-border: #3b4457;
+        --btn-primary-bg: #8c734b;
+        --btn-primary-hover: #a18557;
+        --font-display: 'Cinzel', serif;
+        --font-body: 'Plus Jakarta Sans', sans-serif;
+      }
+
+      body {
+        background-color: var(--bg-main);
+        color: var(--text-main);
+        font-family: var(--font-body);
+        line-height: 1.6;
+        background-image:
+          radial-gradient(circle at 50% 0%, rgba(201, 169, 110, 0.05) 0%, transparent 60%),
+          linear-gradient(to bottom, #0c0e12, #0a0b0e);
+        min-height: 100vh;
+      }
+
+      /* Container */
+      .container {
+        max-width: 1080px;
+        margin: 0 auto;
+        padding: 0 24px;
+      }
+
+      /* Navigation */
+      header {
+        border-bottom: 1px solid var(--border-ancient);
+        background-color: rgba(12, 14, 18, 0.95);
+        position: sticky;
+        top: 0;
+        z-index: 50;
+      }
+
+      .nav-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 20px 24px;
+        max-width: 1080px;
+        margin: 0 auto;
+      }
+
+      .nav-brand {
+        font-family: var(--font-display);
+        font-size: 1.25rem;
+        font-weight: 700;
+        color: var(--gold-primary);
+        text-decoration: none;
+        letter-spacing: 0.08em;
+      }
+
+      .nav-links {
+        display: flex;
+        gap: 28px;
+        list-style: none;
+      }
+
+      .nav-links a {
+        color: var(--text-muted);
+        text-decoration: none;
+        font-size: 0.95rem;
+        font-weight: 500;
+        transition: color 0.2s ease;
+      }
+
+      .nav-links a:hover {
+        color: var(--gold-primary);
+      }
+
+      /* Hero Section */
+      .hero-section {
+        padding: 72px 0 60px 0;
+        display: flex;
+        align-items: center;
+        gap: 48px;
+      }
+
+      .hero-image-wrap {
+        flex-shrink: 0;
+        width: 280px;
+        height: 280px;
+        border: 1px solid var(--border-accent);
+        border-radius: 8px;
+        overflow: hidden;
+        background-color: var(--bg-surface);
+        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.6), inset 0 0 20px rgba(139, 115, 72, 0.15);
+      }
+
+      .hero-image-wrap img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+      }
+
+      .hero-content {
+        flex: 1;
+      }
+
+      .hero-content h1 {
+        font-family: var(--font-display);
+        font-size: 2.75rem;
+        font-weight: 700;
+        color: var(--gold-primary);
+        letter-spacing: 0.03em;
+        margin-bottom: 8px;
+      }
+
+      .hero-content h2 {
+        font-family: var(--font-body);
+        font-size: 1.35rem;
+        font-weight: 600;
+        color: var(--text-main);
+        margin-bottom: 16px;
+      }
+
+      .hero-content p {
+        color: var(--text-muted);
+        font-size: 1rem;
+        margin-bottom: 28px;
+        max-width: 580px;
+      }
+
+      .hero-buttons {
+        display: flex;
+        gap: 16px;
+      }
+
+      .btn {
+        display: inline-block;
+        padding: 12px 28px;
+        font-family: var(--font-body);
+        font-size: 0.95rem;
+        font-weight: 600;
+        text-decoration: none;
+        border-radius: 6px;
+        cursor: pointer;
+        text-align: center;
+        transition: all 0.2s ease;
+      }
+
+      .btn-secondary {
+        background-color: var(--btn-bg);
+        color: var(--text-main);
+        border: 1px solid var(--btn-border);
+      }
+
+      .btn-secondary:hover {
+        border-color: var(--gold-primary);
+        color: var(--gold-primary);
+      }
+
+      /* Section Headers */
+      .section-title {
+        font-family: var(--font-display);
+        font-size: 2rem;
+        font-weight: 700;
+        color: var(--gold-primary);
+        text-align: center;
+        margin-bottom: 32px;
+        letter-spacing: 0.05em;
+      }
+
+      /* About Section */
+      .about-section {
+        padding: 50px 0;
+      }
+
+      .about-card {
+        background-color: var(--bg-surface);
+        border: 1px solid var(--border-ancient);
+        border-radius: 12px;
+        padding: 40px;
+        min-height: 180px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+      }
+
+      .about-card p {
+        color: var(--text-muted);
+        font-size: 1.05rem;
+        line-height: 1.8;
+      }
+
+      /* Projects Section */
+      .projects-section {
+        padding: 50px 0;
+      }
+
+      .projects-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 24px;
+      }
+
+      .project-card {
+        background-color: var(--bg-surface);
+        border: 1px solid var(--border-ancient);
+        border-radius: 10px;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+        transition: transform 0.2s ease, border-color 0.2s ease;
+      }
+
+      .project-card:hover {
+        border-color: var(--border-accent);
+        transform: translateY(-4px);
+      }
+
+      .project-img-box {
+        width: 100%;
+        height: 180px;
+        background-color: #1e2430;
+        overflow: hidden;
+        border-bottom: 1px solid var(--border-ancient);
+      }
+
+      .project-img-box img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+      }
+
+      .project-card-body {
+        padding: 24px;
+        display: flex;
+        flex-direction: column;
+        flex: 1;
+      }
+
+      .project-card-body h3 {
+        font-family: var(--font-display);
+        font-size: 1.25rem;
+        font-weight: 700;
+        color: var(--gold-primary);
+        margin-bottom: 12px;
+      }
+
+      .project-card-body p {
+        color: var(--text-muted);
+        font-size: 0.95rem;
+        margin-bottom: 24px;
+        flex: 1;
+      }
+
+      .project-btn {
+        align-self: flex-start;
+        background-color: #27457a;
+        color: #ffffff;
+        padding: 10px 20px;
+        border-radius: 6px;
+        text-decoration: none;
+        font-size: 0.9rem;
+        font-weight: 600;
+        border: 1px solid #3d63a8;
+        transition: background-color 0.2s ease;
+      }
+
+      .project-btn:hover {
+        background-color: #31579c;
+      }
+
+      /* Skills and Tools Section */
+      .skills-section {
+        padding: 50px 0;
+      }
+
+      .skills-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 24px;
+      }
+
+      .skills-card {
+        background-color: var(--bg-surface);
+        border: 1px solid var(--border-ancient);
+        border-radius: 10px;
+        padding: 28px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+      }
+
+      .skills-card h3 {
+        font-family: var(--font-display);
+        font-size: 1.25rem;
+        font-weight: 700;
+        color: var(--gold-primary);
+        border-bottom: 1px solid var(--border-ancient);
+        padding-bottom: 14px;
+        margin-bottom: 20px;
+      }
+
+      .skills-card ul {
+        list-style-type: none;
+      }
+
+      .skills-card li {
+        padding: 10px 0;
+        color: var(--text-main);
+        font-size: 0.95rem;
+        border-bottom: 1px solid rgba(44, 53, 71, 0.5);
+      }
+
+      .skills-card li:last-child {
+        border-bottom: none;
+      }
+
+      /* Contact Section */
+      .contact-section {
+        padding: 50px 0 72px 0;
+      }
+
+      .contact-card {
+        background-color: var(--bg-surface);
+        border: 1px solid var(--border-ancient);
+        border-radius: 12px;
+        padding: 48px;
+        text-align: center;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+      }
+
+      .contact-card p {
+        color: var(--text-muted);
+        font-size: 1.05rem;
+        margin-bottom: 12px;
+      }
+
+      .contact-card a {
+        color: var(--gold-primary);
+        text-decoration: underline;
+        transition: color 0.2s ease;
+      }
+
+      .contact-card a:hover {
+        color: var(--gold-hover);
+      }
+
+      /* Footer */
+      footer {
+        border-top: 1px solid var(--border-ancient);
+        padding: 28px 0;
+        text-align: center;
+        background-color: #08090c;
+      }
+
+      footer p {
+        color: var(--text-muted);
+        font-size: 0.9rem;
+      }
+
+      /* Responsive Queries */
+      @media (max-width: 900px) {
+        .hero-section {
+          flex-direction: column;
+          text-align: center;
+          gap: 32px;
+        }
+
+        .hero-content p {
+          margin: 0 auto 28px auto;
+        }
+
+        .hero-buttons {
+          justify-content: center;
+        }
+
+        .projects-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .skills-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      @media (max-width: 600px) {
+        .nav-container {
+          flex-direction: column;
+          gap: 16px;
+        }
+
+        .nav-links {
+          gap: 16px;
+          flex-wrap: wrap;
+          justify-content: center;
+        }
+
+        .hero-section {
+          padding: 40px 0;
+        }
+
+        .hero-image-wrap {
+          width: 220px;
+          height: 220px;
+        }
+
+        .hero-content h1 {
+          font-size: 2.1rem;
+        }
+
+        .about-card,
+        .contact-card {
+          padding: 24px;
+        }
+
+        .hero-buttons {
+          flex-direction: column;
+        }
+
+        .btn {
+          width: 100%;
+        }
+      }
+    </style>
+  </head>
+  <body id="top">
+    <!-- ================= HEADER / NAVBAR ================= -->
+    <header>
+      <div class="nav-container">
+        <!-- EDIT: NAVBAR_BRAND -->
+        <a href="#" class="nav-brand">Ancient War Dragon</a>
+        <!-- EDIT: NAVBAR_LINKS -->
+        <ul class="nav-links">
+          <li>
+            <a href="#about">About</a>
+          </li>
+          <li>
+            <a href="#projects">Projects</a>
+          </li>
+          <li>
+            <a href="#skills">Skills/Tools</a>
+          </li>
+          <li>
+            <a href="#contact">Contact</a>
+          </li>
+        </ul>
+      </div>
+    </header>
+    <main class="container">
+      <!-- ================= HERO SECTION ================= -->
+      <section class="hero-section">
+        <div class="hero-image-wrap">
+          <!-- EDIT: HERO_IMAGE -->
+          <img src="profile.jfif" alt="Your Name">
+        </div>
+        <div class="hero-content">
+          <!-- EDIT: YOUR_NAME -->
+          <h1>Vhagar Targaryen</h1>
+          <!-- EDIT: YOUR_JOB_TITLE -->
+          <h2>The Dragon of Destruction</h2>
+          <!-- EDIT: SHORT_INTRODUCTION -->
+          <p>Vhagar is one of the three legendary dragons that conquered the Seven Kingdoms alongside Aegon the Conqueror, together with Balerion the Black Dread and Meraxes.</p>
+          <!-- EDIT: HERO_ACTIONS -->
+          <div class="hero-buttons">
+            <a href="#projects" class="btn btn-secondary">View My Projects</a>
+            <a href="#contact" class="btn btn-secondary">Contact Me</a>
+          </div>
+        </div>
+      </section>
+      <!-- ================= ABOUT SECTION ================= -->
+      <section id="about" class="about-section">
+        <!-- EDIT: ABOUT_HEADING -->
+        <h2 class="section-title">About Me</h2>
+        <div class="about-card">
+          <!-- EDIT: ABOUT_YOU -->
+          <p>Vhagar, known as the Ancient Fury, is one of the largest and most fearsome dragons in the world of House of the Dragon. Once ridden by Queen Visenya Targaryen during the conquest of the Seven Kingdoms alongside Balerion the Black Dread and Meraxes, Vhagar became a symbol of Targaryen power and dominance.
+			<br><br>
+			With her colossal size, devastating dragonfire, and centuries of battle experience, Vhagar is a formidable force capable of laying waste to armies and striking terror into her enemies. Though older and slower than she once was, her immense strength and ferocity make her one of the most dangerous dragons ever to soar across Westeros.
+			<br><br>
+			Fire made her legendary. Time made her a terror.</p>
+        </div>
+      </section>
+      <!-- ================= PROJECTS SECTION ================= -->
+      <section id="projects" class="projects-section">
+        <!-- EDIT: PROJECTS_HEADING -->
+        <h2 class="section-title">Projects</h2>
+        <div class="projects-grid">
+          <!-- EDIT: PROJECT_CARD_1 -->
+          <div class="project-card">
+            <div class="project-img-box">
+              <img src="conquest2.jpg" alt="Project Title">
+            </div>
+            <div class="project-card-body">
+              <h3>Conquest of the Seven Kingdoms</h3>
+              <p>A historical dragon warfare project highlighting Vhagar’s role as one of the three dragons involved in Aegon’s Conquest, alongside Balerion and Meraxes. This project explores aerial combat, strategic firepower, and the use of dragons in large-scale military campaigns.</p>
+              <a href="#" class="project-btn">View More</a>
+            </div>
+          </div>
+          <!-- EDIT: PROJECT_CARD_2 -->
+          <div class="project-card">
+            <div class="project-img-box">
+              <img src="conquest.jpg" alt="Project Title">
+            </div>
+            <div class="project-card-body">
+              <h3>Aerial Combat and Dragonfire Mastery</h3>
+              <p>A dragon combat strategy concept showcasing Vhagar’s immense strength, devastating dragonfire, and battlefield dominance. The project focuses on aerial attacks, defensive capabilities, and the tactical use of a powerful war dragon to overcome enemy forces.</p>
+              <a href="#" class="project-btn">View More</a>
+            </div>
+          </div>
+          <!-- EDIT: PROJECT_CARD_3 -->
+          <div class="project-card">
+            <div class="project-img-box">
+              <img src="endurance.jfif" alt="Project Title">
+            </div>
+            <div class="project-card-body">
+              <h3>Ancient Dragon Strength and Battle Endurance</h3>
+              <p>A fantasy creature profile examining Vhagar’s immense size, age, combat experience, and resilience as an ancient war dragon. It highlights dragon abilities, physical power, and endurance to demonstrate how these characteristics contribute to battlefield effectiveness in the world of House of the Dragon.</p>
+              <a href="#" class="project-btn">View More</a>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- ================= SKILLS AND TOOLS SECTION ================= -->
+      <section id="skills" class="skills-section">
+        <!-- EDIT: SKILLS_HEADING -->
+        <h2 class="section-title">Skills and Tools</h2>
+        <div class="skills-grid">
+          <!-- EDIT: SKILLS_CARD -->
+          <div class="skills-card">
+            <h3>Skills</h3>
+            <ul>
+              <li>🔥 Dragonfire</li>
+              <li>🐉 Dragon Claw</li>
+              <li>☄️ Skyfall Dive</li>
+              <li>🩸Dragon Blood</li>
+            </ul>
+          </div>
+          <!-- EDIT: TOOLS_CARD -->
+          <div class="skills-card">
+            <h3>Tools / Technologies</h3>
+            <ul>
+              <li>Fire</li>
+              <li>Dragon Armor</li>
+              <li>Flying</li>
+              <li>Self-healing</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+      <!-- ================= CONTACT SECTION ================= -->
+      <section id="contact" class="contact-section">
+        <!-- EDIT: CONTACT_HEADING -->
+        <h2 class="section-title">Contact</h2>
+        <div class="contact-card">
+          <!-- EDIT: YOUR_EMAIL -->
+          <p>Email: vhagar123@testmail.com</p>
+          <!-- EDIT: YOUR_CONTACT_INFORMATION -->
+          <p>Phone: 09161234567</p>
+          <!-- EDIT: YOUR_SOCIAL_LINK -->
+          <p>
+            <a href="#">Socials: https://fakeinsta.com/vhagarhotd</a>
+          </p>
+        </div>
+      </section>
+    </main>
+    <!-- ================= FOOTER ================= -->
+    <footer>
+      <!-- EDIT: FOOTER_TEXT -->
+      <a href="#top">Back to Top ↑</a>
+      <p>© 2026  Vhagar Targaryen. All rights reserved.</p>
+    </footer>
+  </body>
+</html>
